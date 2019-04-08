@@ -161,46 +161,6 @@
         {
             "title": "Textured Mesh - Advanced",
             "entry": "textured-mesh-advanced.js"
-        },
-        {
-            "title": "Triangle",
-            "entry": "triangle.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Colored Triangle",
-            "entry": "triangle-color.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Textured Triangle",
-            "entry": "triangle-textured.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Uniforms",
-            "entry": "uniforms.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Sharing Geometry",
-            "entry": "sharing-geometry.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Sharing Shader",
-            "entry": "shared-shader.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Merging Geometry",
-            "entry": "merging-geometry.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "Interleaving Geometry",
-            "entry": "interleaving-geometry.js",
-            "validVersions": [5]
         }
 	],
 	"textures": [
@@ -219,16 +179,6 @@
         {
             "title": "Gradient Basic",
             "entry": "gradient-basic.js"
-        },
-        {
-            "title": "Gradient Resource",
-            "entry": "gradient-resource.js",
-            "validVersions": [5]
-        },
-        {
-            "title": "v5 Not-premultiplied alpha",
-            "entry": "not-premultiplied-alpha.js",
-            "validVersions": [5]
         }
     ],
     "plugin-filters": [
@@ -246,32 +196,28 @@
             "entry": "dragon.js",
             "plugins": [
                 "pixi-spine"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Goblin",
             "entry": "goblins.js",
             "plugins": [
                 "pixi-spine"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Pixie",
             "entry": "pixie.js",
             "plugins": [
                 "pixi-spine"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Walking Animation",
             "entry": "spineboy.js",
             "plugins": [
                 "pixi-spine"
-            ],
-            "validVersions": [4]
+            ]
         }
     ],
     "plugin-projection": [
@@ -280,48 +226,42 @@
             "entry": "basic.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "2D Plane",
             "entry": "plane.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "2D Plane Tiling",
             "entry": "plane-tiling.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "2D Quad projective",
             "entry": "quad-homo.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
 		{
             "title": "2D Quad bilinear",
             "entry": "quad-bi.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Isometry basics",
             "entry": "iso-basic.js",
             "plugins": [
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "3D Camera Spine Layers",
@@ -330,8 +270,7 @@
                 "pixi-spine",
                 "pixi-layers",
                 "pixi-projection-spine"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "3D Cards",
@@ -339,8 +278,7 @@
             "plugins": [
                 "pixi-layers",
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "3D Runner",
@@ -348,8 +286,7 @@
             "plugins": [
                 "pixi-spine",
                 "pixi-projection"
-            ],
-            "validVersions": [4]
+            ]
         }
     ],
     "plugin-layers": [
@@ -359,24 +296,21 @@
             "plugins": [
                 "pixi-layers",
                 "pixi-lights"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Lighting",
             "entry": "lighting.js",
             "plugins": [
                 "pixi-layers"
-            ],
-            "validVersions": [4]
+            ]
         },
 		{
             "title": "Z-order",
             "entry": "zorder.js",
             "plugins": [
                 "pixi-layers"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Drag, Sort, Light",
@@ -384,16 +318,14 @@
             "plugins": [
                 "pixi-layers",
                 "pixi-lights"
-            ],
-            "validVersions": [4]
+            ]
         },
         {
             "title": "Trail",
             "entry": "trail.js",
             "plugins": [
                 "pixi-layers"
-            ],
-            "validVersions": [4]
+            ]
         }
     ],
     "plugin-picture": [
@@ -402,8 +334,7 @@
             "entry": "overlay.js",
             "plugins": [
                 "pixi-picture"
-            ],
-            "validVersions": [4]
+            ]
         }
     ],
     "plugin-compressed-textures": [
@@ -412,8 +343,7 @@
             "entry": "dds.js",
             "plugins": [
                 "pixi-compressed-textures"
-            ],
-            "validVersions": [4]
+            ]
         }
     ]
 }

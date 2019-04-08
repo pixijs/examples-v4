@@ -1,4 +1,4 @@
-var app = new PIXI.Application(800, 600);
+var app = new PIXI.Application();
 document.body.appendChild(app.view);
 
 var bg = PIXI.Sprite.fromImage('examples/assets/pixi-filters/bg_depth_blur.jpg');

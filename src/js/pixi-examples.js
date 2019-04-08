@@ -6,14 +6,10 @@ function getParameterByName(name) {
 }
 
 function getMajorPixiVersion(pixiVersionString) {
-    var majorVersion = 5;
+    var majorVersion = 4;
 
     if (pixiVersionString.substr(0, 1) === 'v') {
         majorVersion = parseInt(pixiVersionString.substr(1, 1), 10);
-    } else {
-        if (pixiVersionString === 'release') {
-            majorVersion = 4;
-        }
     }
 
     return majorVersion
@@ -34,6 +30,7 @@ jQuery(document).ready(function($) {
 
     var bpc = bpc || {};
 
+    bpc.allowedVersions = [4];
     bpc.pixiVersionString = getParameterByName('v') || 'release';
     bpc.majorPixiVersion = getMajorPixiVersion(bpc.pixiVersionString);
 
@@ -106,12 +103,11 @@ jQuery(document).ready(function($) {
         });
 
         $.getJSON('https://api.github.com/repos/pixijs/pixi.js/git/refs/tags', function(data) {
-            // Filters the tags to only include v4 and above.
+            // Filters the tags to only include versions we care about.
             // Only use the last 5 tags per major version
-            var allowedVersions = [4, 5];
-            var maxTagsPerVersion = 3;
+            var maxTagsPerVersion = 5;
             var taggedVersions = [];
-            allowedVersions.forEach( function(version) {
+            bpc.allowedVersions.forEach( function(version) {
                 var filtered = data.filter(function(tag) {
                     return tag.ref.indexOf('refs/tags/v' + version) === 0;
                 });
@@ -129,23 +125,9 @@ jQuery(document).ready(function($) {
                 $('.select-group .select ul').append('<li data-val="' + taggedVersions[i] + '">' + taggedVersions[i] + '</li>');
             }
 
-            $.getJSON('https://api.github.com/repos/pixijs/pixi.js/git/refs/heads', function(data) {
-                // For NEXT version development
-                var data = data.filter(function(tag) {
-                    return tag.ref.indexOf('refs/heads/next') == 0;
-                }).map(function(tag) {
-                    return tag.ref.replace('refs/heads/', '');
-                });
-
-                for (var i = 0; i < data.length; i++) {
-                    $('.select-group .select ul').append('<li data-val="' + data[i] + '">' + data[i] + '</li>');
-                }
-
-                var $selected = $('.select-group .select li[data-val="' + bpc.pixiVersionString + '"]');
-                $selected.addClass('selected');
-                $('.select-group .select .current').text($selected.text())
-            });
-
+            var $selected = $('.select-group .select li[data-val="' + bpc.pixiVersionString + '"]');
+            $selected.addClass('selected');
+            $('.select-group .select .current').text($selected.text())
         });
     };
 
@@ -215,7 +197,9 @@ jQuery(document).ready(function($) {
                 pixiUrl = 'https://d157l7jdn8e5sf.cloudfront.net/' + bpc.pixiVersionString + '/pixi.js';
             }
 
-            var html = '<!DOCTYPE html><html><head><style>body,html{margin:0px;height:100%;overflow:hidden;}canvas{width:100%;height:100%;}</style></head><body>';
+            let html = '<!DOCTYPE html><html><head><style>';
+            html += 'body,html{margin:0px;height:100%;overflow:hidden;}canvas{width:100%;height:100%;}';
+            html += '</style></head><body>';
             html += '<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>';
             html += '<script src="' + pixiUrl + '"></script>';
 

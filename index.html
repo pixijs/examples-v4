@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>PixiJS Examples</title>
-		<meta name="description" content="PixiJS Examples">
+		<title>PixiJS v4 Examples</title>
+		<meta name="description" content="PixiJS v4 Examples">
 		<meta name="format-detection" content="telephone-no">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -22,6 +22,13 @@
 			</div>
 		</header>
 		<nav class="main-nav">
+			<div class="select-major-version">
+				<span>Examples for PixiJS version:</span>
+				<div class="versions">
+					<span class="version selected">v4</span> -
+					<span class="version"><a href="https://pixijs.io/examples/">v5</a></span>
+				</div>
+			</div>
 			<div class="main-menu">
 			</div>
 			<div class="about">
@@ -48,7 +55,7 @@
 						s0.6,0.1,0.9,0.4C30.7,1.9,30.9,2.2,30.9,2.6z"/>
 					</svg>
 				</div>
-            </div>
+			</div>
 			<div class="code clearfix">
 				<h3 id="code-header">Example Code</h3>
 				<textarea id="code"></textarea>
@@ -59,7 +66,6 @@
 							<span class="current">Latest Release</span>
 							<ul>
 								<li data-val="release">Latest Release</li>
-								<li data-val="dev">Latest Development</li>
 								<li data-val="local">local</li>
 							</ul>
 						</div>
@@ -67,48 +73,23 @@
 					<button class="button download">Download Code</button>
 				</div>
 			</div>
-			<p class="submit">Would you like to create a new example? Head over to the examples repo on <a href="https://github.com/pixijs/examples" target="_blank">GitHub</a>.</p>
+			<p class="submit">Would you like to create a new example? Head over to the examples repo on <a href="https://github.com/pixijs/examples-v4" target="_blank">GitHub</a>.</p>
 		</article>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="vendor/codemirror/codemirror.js"></script>
 		<script src="vendor/codemirror/javascript.js"></script>
 		<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-103772589-4', 'auto');
-        ga('send', 'pageview');
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-103772589-4', 'auto');
+			ga('send', 'pageview');
 
-        function supportsES6() {
-            "use strict";
-            try {
-                eval("var foo = (x) => x + 1");
-            } catch (e) {
-                return false;
-            }
-            return true;
-        }
-
-        if (supportsES6()) {
-            var script = document.createElement('script');
-            script.src = "dest/js/pixi-examples.min.js?v=1.1.0";
-            document.write(script.outerHTML)
-        } else {
-            var title = document.getElementById('example-title');
-            title.innerText = "PixiJS Examples requires a browser that supports ES6";
-
-            var divsToHide = document.getElementsByClassName('code');
-            for(var i = 0; i < divsToHide.length; ++i){
-                divsToHide[i].style.display = "none";
-            }
-
-            divsToHide = document.getElementsByClassName('example-frame');
-            for(var i = 0; i < divsToHide.length; ++i){
-                divsToHide[i].style.display = "none";
-            }
-        }
-        </script>
+			var script = document.createElement('script');
+			script.src = "dest/js/pixi-examples.min.js?v=1.1.0";
+			document.write(script.outerHTML)
+		</script>
 	</body>
 </html>

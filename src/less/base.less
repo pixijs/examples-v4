@@ -89,6 +89,30 @@ a {
 		left: 0px;
 	}
 
+	.select-major-version {
+		display: block;
+		width: 100%;
+		font-size: 14px;
+		font-weight: 500;
+		padding: 0px 20px 20px;
+		letter-spacing: 0.05em;
+		text-align: center;
+		color: white;
+		.versions {
+			font-size: 15px;
+			a {
+				color: @blue300;
+				&:hover, &.open {
+					color: #fff;
+					.transition(color, @anim);
+				}
+			}
+			.selected {
+				color: @pink300;
+			}
+		}
+	}
+
 	.main-menu {
 		.section {
 			display: block;
