@@ -1,26 +1,29 @@
-var W = 800, H = 600, PAD = 80, resolution = 1;
-var WIDTH = W / resolution, HEIGHT  = H / resolution;
+var W = 800; var H = 600; var PAD = 80; var
+    resolution = 1;
+var WIDTH = W / resolution; var
+    HEIGHT = H / resolution;
 
-//the plugin is here: https://github.com/pixijs/pixi-display/tree/layers, its WIP
+// the plugin is here: https://github.com/pixijs/pixi-display/tree/layers, its WIP
 
-var app = new PIXI.Application({width: WIDTH, height: HEIGHT, resolution});
+var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution });
 document.body.appendChild(app.view);
 
-//create the stage instead of container
+// create the stage instead of container
 app.stage = new PIXI.display.Stage();
 
 var background = new PIXI.extras.TilingSprite(
     PIXI.Texture.fromImage('examples/assets/p2.jpeg'),
     WIDTH,
-    HEIGHT);
+    HEIGHT
+);
 app.stage.addChild(background);
-//make container for bunnies
+// make container for bunnies
 var bunnyWorld = new PIXI.Container();
 app.stage.addChild(bunnyWorld);
 
 var lighting = new PIXI.display.Layer();
-lighting.on('display', function (element) {
-    element.blendMode = PIXI.BLEND_MODES.ADD
+lighting.on('display', function(element) {
+    element.blendMode = PIXI.BLEND_MODES.ADD;
 });
 lighting.useRenderTexture = true;
 lighting.clearColor = [0.5, 0.5, 0.5, 1]; // ambient gray
@@ -55,7 +58,7 @@ function createBunny() {
     bunny.update = updateBunny;
 
     var angle = Math.random() * Math.PI * 2;
-    var speed = 200.0; //px per second
+    var speed = 200.0; // px per second
     bunny.vx = Math.cos(angle) * speed / 60.0;
     bunny.vy = Math.sin(angle) * speed / 60.0;
     bunny.position.set(Math.random() * WIDTH, Math.random() * HEIGHT);
@@ -69,7 +72,7 @@ function createBunny() {
     lightbulb.beginFill((rr << 16) + (rg << 8) + rb, 1.0);
     lightbulb.drawCircle(0, 0, rad);
     lightbulb.endFill();
-    lightbulb.parentLayer = lighting;//<-- try comment it
+    lightbulb.parentLayer = lighting;// <-- try comment it
 
     bunny.addChild(lightbulb);
 

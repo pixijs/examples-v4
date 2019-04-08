@@ -13,17 +13,17 @@ container.position.set(app.screen.width / 2, app.screen.height);
 
 // tiling - takes whole screen, anchor and position are the same as of sprite surface
 // different tint, to see the black part
-var tiling = new PIXI.projection.TilingSprite2d(new PIXI.Texture.fromImage("examples/assets/bg_plane.jpg"), app.screen.width, app.screen.height);
+var tiling = new PIXI.projection.TilingSprite2d(PIXI.Texture.fromImage('examples/assets/bg_plane.jpg'), app.screen.width, app.screen.height);
 tiling.position.set(app.screen.width / 2, app.screen.height);
 tiling.anchor.set(0.5, 1.0);
 tiling.tint = 0x808080;
 
-var surface = new PIXI.projection.Sprite2d(new PIXI.Texture.fromImage("examples/assets/bg_plane.jpg"));
+var surface = new PIXI.projection.Sprite2d(PIXI.Texture.fromImage('examples/assets/bg_plane.jpg'));
 surface.anchor.set(0.5, 1.0);
-//surface.scale.y = -1; //sorry, have to do that to make a correct projection
+// surface.scale.y = -1; //sorry, have to do that to make a correct projection
 surface.width = app.screen.width;
 surface.height = app.screen.height;
-//var squarePlane = new PIXI.projection.Sprite2d(PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
+// var squarePlane = new PIXI.projection.Sprite2d(PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
 var squarePlane = new PIXI.projection.Sprite2d(PIXI.Texture.WHITE);
 squarePlane.tint = 0xff0000;
 squarePlane.factor = 1;
@@ -42,10 +42,10 @@ container.addChild(squarePlane);
 squarePlane.addChild(bunny);
 
 // Listen for animate update
-app.ticker.add(function (delta) {
+app.ticker.add(function(delta) {
     // now we can get local coords for points of perspective
     let pos = container.toLocal(squareFar.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
-    //need to invert this thing, otherwise we'll have to use scale.y=-1 which is not good
+    // need to invert this thing, otherwise we'll have to use scale.y=-1 which is not good
     pos.y = -pos.y;
     pos.x = -pos.x;
     container.proj.setAxisY(pos, -squareFar.factor);
@@ -53,16 +53,16 @@ app.ticker.add(function (delta) {
     tiling.tileScale.copy(surface.scale);
     // dont overflow tilePosition, shaders will have less precision
     tiling.tilePosition.x = (tiling.tilePosition.x + delta) % tiling.texture.width;
-    //sync container proj and tiling inside proj
+    // sync container proj and tiling inside proj
     tiling.tileProj.setAxisY(pos, -squareFar.factor);
 
-    squarePlane.proj.affine = squarePlane.factor ?
-        PIXI.projection.AFFINE.AXIS_X : PIXI.projection.AFFINE.NONE;
+    squarePlane.proj.affine = squarePlane.factor
+        ? PIXI.projection.AFFINE.AXIS_X : PIXI.projection.AFFINE.NONE;
 });
 
 addInteraction(squareFar);
 addInteraction(squarePlane);
-//move the bunny too!
+// move the bunny too!
 addInteraction(bunny);
 
 // === CLICKS AND SNAP ===
@@ -76,14 +76,14 @@ function toggle(obj) {
 }
 
 function snap(obj) {
-    if (obj == bunny) {
+    if (obj === bunny) {
         obj.position.set(0);
-    } else if (obj == squarePlane) {
-        //plane bounds
+    } else if (obj === squarePlane) {
+        // plane bounds
         obj.position.x = Math.min(Math.max(obj.position.x, -app.screen.width / 2 + 10), app.screen.width / 2 - 10);
         obj.position.y = Math.min(Math.max(obj.position.y, -app.screen.height + 10), 10);
     } else {
-        //far
+        // far
         obj.position.x = Math.min(Math.max(obj.position.x, 0), app.screen.width);
         obj.position.y = Math.min(Math.max(obj.position.y, 0), app.screen.height);
     }
@@ -115,7 +115,7 @@ function onDragStart(event) {
 function onDragEnd(event) {
     var obj = event.currentTarget;
     if (!obj.dragging) return;
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         toggle(obj);
     } else {
         snap(obj);
@@ -133,15 +133,15 @@ function onDragMove(event) {
     if (!obj.dragging) return;
     event.stopPropagation();
     var data = obj.dragData; // it can be different pointer!
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         // click or drag?
-        if (Math.abs(data.global.x - obj.dragGlobalStart.x) +
-            Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
+        if (Math.abs(data.global.x - obj.dragGlobalStart.x)
+            + Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
             // DRAG
             obj.dragging = 2;
         }
     }
-    if (obj.dragging == 2) {
+    if (obj.dragging === 2) {
         var dragPointerEnd = data.getLocalPosition(obj.parent);
         // DRAG
         obj.position.set(

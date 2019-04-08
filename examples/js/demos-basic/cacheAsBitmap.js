@@ -5,7 +5,7 @@ app.stop();
 
 // load resources
 PIXI.loader
-    .add('spritesheet','examples/assets/spritesheet/monsters.json')
+    .add('spritesheet', 'examples/assets/spritesheet/monsters.json')
     .load(onAssetsLoaded);
 
 // holder to store aliens
@@ -31,7 +31,6 @@ app.stage.addChild(alienContainer);
 function onAssetsLoaded() {
     // add a bunch of aliens with textures from image paths
     for (var i = 0; i < 100; i++) {
-
         var frameName = alienFrames[i % 4];
 
         // create an alien using the frame name..
@@ -68,7 +67,6 @@ function onClick() {
 }
 
 app.ticker.add(function() {
-
     // let's rotate the aliens a little bit
     for (var i = 0; i < 100; i++) {
         var alien = aliens[i];

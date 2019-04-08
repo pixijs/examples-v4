@@ -32,7 +32,6 @@ app.stage.addChild(button);
 button.on('pointertap', onPlayVideo);
 
 function onPlayVideo() {
-
     // Don't need the button anymore
     button.destroy();
 

@@ -5,8 +5,7 @@ PIXI.loader
     .add('examples/assets/spritesheet/fighter.json')
     .load(onAssetsLoaded);
 
-function onAssetsLoaded()
-{
+function onAssetsLoaded() {
     // create an array of textures from an image path
     var frames = [];
 

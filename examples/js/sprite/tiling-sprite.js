@@ -18,7 +18,6 @@ app.stage.addChild(tilingSprite);
 var count = 0;
 
 app.ticker.add(function() {
-
     count += 0.005;
 
     tilingSprite.tileScale.x = 2 + Math.sin(count);

@@ -3,7 +3,7 @@ document.body.appendChild(app.view);
 
 var sprite = PIXI.Sprite.fromImage('examples/assets/bg_rotate.jpg');
 
-//// BEZIER CURVE ////
+// // BEZIER CURVE ////
 // information: https://en.wikipedia.org/wiki/Bézier_curve
 
 var realPath = new PIXI.Graphics();
@@ -29,7 +29,7 @@ bezier.position.y = 50;
 
 app.stage.addChild(bezier);
 
-//// BEZIER CURVE 2 ////
+// // BEZIER CURVE 2 ////
 var realPath2 = new PIXI.Graphics();
 
 realPath2.lineStyle(2, 0xFFFFFF, 1);
@@ -53,7 +53,7 @@ bezier2.position.y = 150;
 
 app.stage.addChild(bezier2);
 
-//// ARC ////
+// // ARC ////
 var arc = new PIXI.Graphics();
 
 arc.lineStyle(5, 0xAA00BB, 1);
@@ -61,7 +61,7 @@ arc.arc(600, 100, 50, Math.PI, 2 * Math.PI);
 
 app.stage.addChild(arc);
 
-//// ARC 2 ////
+// // ARC 2 ////
 var arc2 = new PIXI.Graphics();
 
 arc2.lineStyle(6, 0x3333DD, 1);
@@ -69,7 +69,7 @@ arc2.arc(650, 270, 60, 2 * Math.PI, 3 * Math.PI / 2);
 
 app.stage.addChild(arc2);
 
-//// ARC 3 ////
+// // ARC 3 ////
 var arc3 = new PIXI.Graphics();
 
 arc3.lineTextureStyle(20, sprite.texture);
@@ -77,7 +77,7 @@ arc3.arc(650, 420, 60, 2 * Math.PI, 2.5 * Math.PI / 2);
 
 app.stage.addChild(arc3);
 
-/// Hole ////
+// / Hole ////
 var rectAndHole = new PIXI.Graphics();
 
 rectAndHole.beginFill(0x00FF00);
@@ -91,7 +91,7 @@ rectAndHole.endFill();
 
 app.stage.addChild(rectAndHole);
 
-//// Line Texture Style ////
+// // Line Texture Style ////
 var beatifulRect = new PIXI.Graphics();
 
 beatifulRect.lineTextureStyle(20, sprite.texture);
@@ -100,5 +100,3 @@ beatifulRect.drawRect(80, 350, 150, 150);
 beatifulRect.endFill();
 
 app.stage.addChild(beatifulRect);
-
-

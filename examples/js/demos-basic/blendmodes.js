@@ -2,7 +2,7 @@ var app = new PIXI.Application();
 document.body.appendChild(app.view);
 
 // create a new background sprite
-var background = new PIXI.Sprite.fromImage('examples/assets/bg_rotate.jpg');
+var background = PIXI.Sprite.fromImage('examples/assets/bg_rotate.jpg');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
@@ -13,7 +13,6 @@ var dudeArray = [];
 var totaldudes = 20;
 
 for (var i = 0; i < totaldudes; i++) {
-
     // create a new Sprite that uses the image name that we just generated as its source
     var dude = PIXI.Sprite.fromImage('examples/assets/flowerTop.png');
 
@@ -55,10 +54,8 @@ var dudeBounds = new PIXI.Rectangle(
 );
 
 app.ticker.add(function() {
-
     // iterate through the dudes and update the positions
     for (var i = 0; i < dudeArray.length; i++) {
-
         var dude = dudeArray[i];
         dude.direction += dude.turningSpeed * 0.01;
         dude.x += Math.sin(dude.direction) * dude.speed;
@@ -68,15 +65,13 @@ app.ticker.add(function() {
         // wrap the dudes by testing their bounds...
         if (dude.x < dudeBounds.x) {
             dude.x += dudeBounds.width;
-        }
-        else if (dude.x > dudeBounds.x + dudeBounds.width) {
+        } else if (dude.x > dudeBounds.x + dudeBounds.width) {
             dude.x -= dudeBounds.width;
         }
 
         if (dude.y < dudeBounds.y) {
             dude.y += dudeBounds.height;
-        }
-        else if (dude.y > dudeBounds.y + dudeBounds.height) {
+        } else if (dude.y > dudeBounds.y + dudeBounds.height) {
             dude.y -= dudeBounds.height;
         }
     }

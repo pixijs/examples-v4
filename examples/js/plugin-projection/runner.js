@@ -15,7 +15,8 @@ loader
     .add('fg', 'examples/assets/pixi-spine/iP4_ground.png')
     .load(onAssetsLoaded);
 
-var objs = [], pixie;
+var objs = []; var
+    pixie;
 
 app.stage.interactive = true;
 
@@ -45,20 +46,19 @@ camera.addChild(mainLayer);
 
 var repeats = 3;
 
-function onAssetsLoaded(loader,res) {
-
-    for (var i=0; i<repeats; i++) {
+function onAssetsLoaded(loader, res) {
+    for (var i = 0; i < repeats; i++) {
         // simple 2d sprite on back
-        var bg = new PIXI.Sprite(res['bg'].texture);
+        var bg = new PIXI.Sprite(res.bg.texture);
         bgLayer.addChild(bg);
         bg.position.x = bg.texture.width * i;
         bg.anchor.y = 1;
         objs.push(bg);
     }
 
-    for (var i=0; i<repeats; i++) {
+    for (var i = 0; i < repeats; i++) {
         // 3d sprite on floor
-        var fg = new PIXI.projection.Sprite3d(res['fg'].texture);
+        var fg = new PIXI.projection.Sprite3d(res.fg.texture);
         groundLayer.addChild(fg);
         fg.anchor.set(0, 0.5);
         // use position or position3d here, its not important,
@@ -67,7 +67,7 @@ function onAssetsLoaded(loader,res) {
         objs.push(fg);
     }
 
-    pixie = new PIXI.spine.Spine(res['pixie'].spineData);
+    pixie = new PIXI.spine.Spine(res.pixie.spineData);
     pixie.position.set(300, 0);
     pixie.scale.set(0.3);
 

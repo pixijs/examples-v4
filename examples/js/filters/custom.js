@@ -2,7 +2,7 @@ var app = new PIXI.Application();
 document.body.appendChild(app.view);
 
 // Create background image
-var background = PIXI.Sprite.fromImage("examples/assets/bg_grass.jpg");
+var background = PIXI.Sprite.fromImage('examples/assets/bg_grass.jpg');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
@@ -16,8 +16,7 @@ PIXI.loader.add('shader', 'examples/assets/pixi-filters/shader.frag')
 var filter;
 
 // Handle the load completed
-function onLoaded (loader,res) {
-
+function onLoaded(loader, res) {
     // Create the new filter, arguments: (vertexShader, framentSource)
     filter = new PIXI.Filter(null, res.shader.data);
 

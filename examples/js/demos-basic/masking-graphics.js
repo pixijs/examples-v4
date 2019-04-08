@@ -26,7 +26,7 @@ light2.anchor.set(0.5);
 var light1 = PIXI.Sprite.fromImage('examples/assets/light_rotate_1.png');
 light1.anchor.set(0.5);
 
-var panda =  PIXI.Sprite.fromImage('examples/assets/panda.png');
+var panda = PIXI.Sprite.fromImage('examples/assets/panda.png');
 panda.anchor.set(0.5);
 
 container.addChild(bgFront, light2, light1, panda);
@@ -47,8 +47,7 @@ var count = 0;
 app.stage.on('pointertap', function() {
     if (!container.mask) {
         container.mask = thing;
-    }
-    else {
+    } else {
         container.mask = null;
     }
 });
@@ -56,7 +55,7 @@ app.stage.on('pointertap', function() {
 var help = new PIXI.Text('Click or tap to turn masking on / off.', {
     fontFamily: 'Arial',
     fontSize: 12,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     fill: 'white'
 });
 help.y = app.screen.height - 26;
@@ -64,7 +63,6 @@ help.x = 10;
 app.stage.addChild(help);
 
 app.ticker.add(function() {
-
     bg.rotation += 0.01;
     bgFront.rotation -= 0.01;
 
@@ -79,9 +77,9 @@ app.ticker.add(function() {
     thing.clear();
 
     thing.beginFill(0x8bc5ff, 0.4);
-    thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
-    thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
-    thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
-    thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+    thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count) * 20);
+    thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count) * 20);
+    thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count) * 20);
+    thing.lineTo(-120 + Math.cos(count) * 20, 100 + Math.sin(count) * 20);
     thing.rotation = count * 0.1;
 });

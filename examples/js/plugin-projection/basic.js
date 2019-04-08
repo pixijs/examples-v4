@@ -21,14 +21,14 @@ app.stage.addChild(container);
 app.stage.addChild(squareX);
 app.stage.addChild(squareY);
 
-//add sprite itself
+// add sprite itself
 
-var bunny = new PIXI.projection.Sprite2d(new PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
+var bunny = new PIXI.projection.Sprite2d(PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
 bunny.anchor.set(0.5);
 bunny.scale.set(0.7);
 container.addChild(bunny);
 
-//illuminate the sprite from two points!
+// illuminate the sprite from two points!
 var lightY = new PIXI.projection.Sprite2d(PIXI.Texture.WHITE);
 lightY.anchor.set(0.5, 0.1);
 lightY.scale.set(15, 200);
@@ -42,7 +42,7 @@ lightX.alpha = 0.2;
 container.addChildAt(lightX, 1);
 
 // Listen for animate update
-app.ticker.add(function (delta) {
+app.ticker.add(function(delta) {
     // now we can get local coords for points of perspective
     let posX = container.toLocal(squareX.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
     let posY = container.toLocal(squareY.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
@@ -52,7 +52,7 @@ app.ticker.add(function (delta) {
 
 addInteraction(squareX);
 addInteraction(squareY);
-//move the bunny too!
+// move the bunny too!
 addInteraction(bunny);
 
 // === CLICKS AND SNAP ===
@@ -66,7 +66,7 @@ function toggle(obj) {
 }
 
 function snap(obj) {
-    if (obj == bunny) {
+    if (obj === bunny) {
         obj.position.set(0);
     } else {
         obj.position.x = Math.min(Math.max(obj.position.x, 0), app.screen.width);
@@ -99,7 +99,7 @@ function onDragStart(event) {
 function onDragEnd(event) {
     var obj = event.currentTarget;
     if (!obj.dragging) return;
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         toggle(obj);
     } else {
         snap(obj);
@@ -114,15 +114,15 @@ function onDragMove(event) {
     var obj = event.currentTarget;
     if (!obj.dragging) return;
     var data = obj.dragData; // it can be different pointer!
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         // click or drag?
-        if (Math.abs(data.global.x - obj.dragGlobalStart.x) +
-            Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
+        if (Math.abs(data.global.x - obj.dragGlobalStart.x)
+            + Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
             // DRAG
             obj.dragging = 2;
         }
     }
-    if (obj.dragging == 2) {
+    if (obj.dragging === 2) {
         var dragPointerEnd = data.getLocalPosition(obj.parent);
         // DRAG
         obj.position.set(

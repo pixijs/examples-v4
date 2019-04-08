@@ -1,7 +1,8 @@
 var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
-var w = app.screen.width/2, h = app.screen.height/2;
+var w = app.screen.width / 2; var
+    h = app.screen.height / 2;
 
 function createSquare(x, y) {
     var square = new PIXI.Sprite(PIXI.Texture.WHITE);
@@ -13,23 +14,23 @@ function createSquare(x, y) {
 }
 
 var squares = [
-    createSquare(w-150, h-150),
-    createSquare(w+150, h-150),
-    createSquare(w+150, h+150),
-    createSquare(w-150, h+150)
+    createSquare(w - 150, h - 150),
+    createSquare(w + 150, h - 150),
+    createSquare(w + 150, h + 150),
+    createSquare(w - 150, h + 150)
 ];
 
-var quad = squares.map(function(s) { return s.position });
+var quad = squares.map(function(s) { return s.position; });
 
-//add sprite itself
-var containerSprite = new PIXI.projection.Sprite2s(new PIXI.Texture.fromImage('examples/assets/bg_scene_rotate.jpg'));
+// add sprite itself
+var containerSprite = new PIXI.projection.Sprite2s(PIXI.Texture.fromImage('examples/assets/bg_scene_rotate.jpg'));
 containerSprite.anchor.set(0.5);
 
 app.stage.addChild(containerSprite);
 squares.forEach(function(s) { app.stage.addChild(s); });
 
 // Listen for animate update
-app.ticker.add(function (delta) {
+app.ticker.add(function(delta) {
     containerSprite.proj.mapBilinearSprite(containerSprite, quad);
 });
 
@@ -37,7 +38,7 @@ squares.forEach(function(s) { addInteraction(s); });
 
 // let us add sprite to make it more funny
 
-var bunny = new PIXI.projection.Sprite2s(new PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
+var bunny = new PIXI.projection.Sprite2s(PIXI.Texture.fromImage('examples/assets/flowerTop.png'));
 bunny.anchor.set(0.5);
 containerSprite.addChild(bunny);
 
@@ -49,7 +50,7 @@ function toggle(obj) {
 }
 
 function snap(obj) {
-    if (obj == bunny) {
+    if (obj === bunny) {
         obj.position.set(0);
     } else {
         obj.position.x = Math.min(Math.max(obj.position.x, 0), app.screen.width);
@@ -79,7 +80,7 @@ function onDragStart(event) {
 
 function onDragEnd(event) {
     var obj = event.currentTarget;
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         toggle(obj);
     } else {
         snap(obj);
@@ -93,15 +94,15 @@ function onDragMove(event) {
     var obj = event.currentTarget;
     if (!obj.dragging) return;
     var data = obj.dragData; // it can be different pointer!
-    if (obj.dragging == 1) {
+    if (obj.dragging === 1) {
         // click or drag?
-        if (Math.abs(data.global.x - obj.dragGlobalStart.x) +
-            Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
+        if (Math.abs(data.global.x - obj.dragGlobalStart.x)
+            + Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {
             // DRAG
             obj.dragging = 2;
         }
     }
-    if (obj.dragging == 2) {
+    if (obj.dragging === 2) {
         var dragPointerEnd = data.getLocalPosition(obj.parent);
         // DRAG
         obj.position.set(

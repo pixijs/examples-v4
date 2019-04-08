@@ -1,4 +1,4 @@
-var app = new PIXI.Application(800, 600, { backgroundColor : 0x1099bb });
+var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
 // create a texture from an image path
@@ -15,7 +15,6 @@ for (var i = 0; i < 10; i++) {
 }
 
 function createBunny(x, y) {
-
     // create our little bunny friend..
     var bunny = new PIXI.Sprite(texture);
 
@@ -39,17 +38,17 @@ function createBunny(x, y) {
         .on('pointerupoutside', onDragEnd)
         .on('pointermove', onDragMove);
 
-        // For mouse-only events
-        // .on('mousedown', onDragStart)
-        // .on('mouseup', onDragEnd)
-        // .on('mouseupoutside', onDragEnd)
-        // .on('mousemove', onDragMove);
+    // For mouse-only events
+    // .on('mousedown', onDragStart)
+    // .on('mouseup', onDragEnd)
+    // .on('mouseupoutside', onDragEnd)
+    // .on('mousemove', onDragMove);
 
-        // For touch-only events
-        // .on('touchstart', onDragStart)
-        // .on('touchend', onDragEnd)
-        // .on('touchendoutside', onDragEnd)
-        // .on('touchmove', onDragMove);
+    // For touch-only events
+    // .on('touchstart', onDragStart)
+    // .on('touchend', onDragEnd)
+    // .on('touchendoutside', onDragEnd)
+    // .on('touchmove', onDragMove);
 
     // move the sprite to its designated position
     bunny.x = x;

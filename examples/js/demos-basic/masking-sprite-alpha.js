@@ -24,13 +24,12 @@ var target = new PIXI.Point();
 
 reset();
 
-function reset () {
+function reset() {
     target.x = Math.floor(Math.random() * 550);
     target.y = Math.floor(Math.random() * 300);
 }
 
 app.ticker.add(function() {
-
     mask.x += (target.x - mask.x) * 0.1;
     mask.y += (target.y - mask.y) * 0.1;
 

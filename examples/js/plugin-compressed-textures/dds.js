@@ -7,20 +7,20 @@ var extensions = PIXI.compressedTextures.detectExtensions(app.renderer);
 var loader = new PIXI.loaders.Loader();
 loader.pre(PIXI.compressedTextures.extensionChooser(extensions));
 // use @2x texture if resolution is 2, use dds format if its windows
-var textureOptions1 = { metadata: {choice: ["@2x.png", ".dds", "@2x.dds"]} };
+var textureOptions1 = { metadata: { choice: ['@2x.png', '.dds', '@2x.dds'] } };
 // use dds format if its windows but dont care for retina
-var textureOptions2 = { metadata: {choice: [".dds"]} };
+var textureOptions2 = { metadata: { choice: ['.dds'] } };
 // while loading atlas, choose resolution for atlas and choose format for image
-var atlasOptions = { metadata: { choice: ["@2x.json", "@1x.json"], imageMetadata: { choice: [".dds"]} } };
+var atlasOptions = { metadata: { choice: ['@2x.json', '@1x.json'], imageMetadata: { choice: ['.dds'] } } };
 
 loader.add('building1', 'examples/assets/pixi-compressed-textures/building1.png', textureOptions1)
     .add('building2', 'examples/assets/pixi-compressed-textures/building2.png', textureOptions2)
-    .add('atlas1', 'examples/assets/pixi-compressed-textures/buildings.json', atlasOptions )
+    .add('atlas1', 'examples/assets/pixi-compressed-textures/buildings.json', atlasOptions)
     .load(function(loader, resources) {
         var spr1 = new PIXI.Sprite(resources.building1.texture);
         var spr2 = new PIXI.Sprite(resources.building2.texture);
-        var spr3 = new PIXI.Sprite.fromImage('goldmine_10_5.png');
-        var spr4 = new PIXI.Sprite.fromImage('wind_extractor_10.png');
+        var spr3 = PIXI.Sprite.fromImage('goldmine_10_5.png');
+        var spr4 = PIXI.Sprite.fromImage('wind_extractor_10.png');
         spr1.y = spr3.y = 150;
         spr2.y = spr4.y = 350;
         spr1.x = spr2.x = 250;

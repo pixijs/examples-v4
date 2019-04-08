@@ -53,11 +53,11 @@ function onAssetsLoaded(loader, res) {
     stage.addChild(light);
 
     bg.interactive = true;
-    bg.on('mousemove', function (event) {
+    bg.on('mousemove', function(event) {
         light.position.copy(event.data.global);
     });
 
-    bg.on('pointerdown', function (event) {
+    bg.on('pointerdown', function(event) {
         var clickLight = new PIXI.lights.PointLight(0xffffff);
         clickLight.position.copy(event.data.global);
         stage.addChild(clickLight);

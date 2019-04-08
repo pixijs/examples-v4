@@ -1,4 +1,4 @@
-var app = new PIXI.Application(800, 600, { backgroundColor : 0x1099bb });
+var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
 app.stage = new PIXI.display.Stage();
@@ -20,9 +20,9 @@ app.stage.addChild(showLayer);
 
 var bunnyTex = PIXI.Texture.fromImage('examples/assets/bunny.png');
 var bunnies = [];
-for (var i=0;i<5;i++) {
+for (var i = 0; i < 5; i++) {
     bunnies[i] = new PIXI.Container();
-    bunnies[i].position.set(app.screen.width/2, app.screen.height/2);
+    bunnies[i].position.set(app.screen.width / 2, app.screen.height / 2);
     bunnies[i].rotation = (i / 5) * (Math.PI * 2);
     bunnies[i].pivot.set(0, -200);
 
@@ -39,7 +39,7 @@ app.ticker.add(function(delta) {
     // just for fun, let's rotate mr rabbit a little
     // delta is 1 if running at 100% performance
     // creates frame-independent transformation
-    for (var i=0;i<bunnies.length;i++) {
+    for (var i = 0; i < bunnies.length; i++) {
         bunnies[i].rotation += 0.05 * delta;
         bunnies[i].children[0].rotation += 0.1 * delta;
     }

@@ -59,7 +59,6 @@ for (var i = 0; i < 20; i++) {
 var count = 0;
 
 app.ticker.add(function() {
-
     for (var i = 0; i < items.length; i++) {
         // rotate each item
         var item = items[i];

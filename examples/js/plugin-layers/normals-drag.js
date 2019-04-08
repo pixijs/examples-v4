@@ -1,10 +1,13 @@
-var W = 800, H = 600, PAD = 80, resolution = 1;
-var WIDTH = W / resolution, HEIGHT  = H / resolution;
+var W = 800;
+var H = 600;
+var resolution = 1;
+var WIDTH = W / resolution;
+var HEIGHT = H / resolution;
 
 // LAYERS plugin is here: https://github.com/pixijs/pixi-display/tree/layers
 // LIGHTS plugin is here: https://github.com/pixijs/pixi-lights/tree/v4.x
 
-var app = new PIXI.Application({width: WIDTH, height: HEIGHT, resolution});
+var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution });
 document.body.appendChild(app.view);
 
 var stage = app.stage = new PIXI.display.Stage();
@@ -25,8 +28,8 @@ stage.addChild(new PIXI.display.Layer(PIXI.lights.normalGroup));
 stage.addChild(new PIXI.display.Layer(PIXI.lights.lightGroup));
 
 var sortGroup = new PIXI.display.Group(0, true);
-sortGroup.on('sort', function (sprite) {
-    //green bunnies go down
+sortGroup.on('sort', function(sprite) {
+    // green bunnies go down
     sprite.zOrder = -sprite.y;
 });
 // the group will process all of its members children after the sort
@@ -55,17 +58,17 @@ lightLoader
     .load(onAssetsLoaded);
 
 function onAssetsLoaded(loader, res) {
-    for (var i=0; i<8; i+=2) {
-        stage.addChild(createBlock(100 + i * 50, 100 + i*30));
+    for (var i = 0; i < 8; i += 2) {
+        stage.addChild(createBlock(100 + i * 50, 100 + i * 30));
     }
-    for (var i=1; i<8; i+=2) {
-        stage.addChild(createBlock(100 + i * 50, 100 + i*30));
+    for (var i = 1; i < 8; i += 2) {
+        stage.addChild(createBlock(100 + i * 50, 100 + i * 30));
     }
 }
 
 function createBlock(x, y) {
     var container = new PIXI.Container();
-    //we need to sort them before children go to respective layers
+    // we need to sort them before children go to respective layers
     container.parentGroup = sortGroup;
     container.position.set(x, y);
     var diffuseSprite = new PIXI.Sprite(lightLoader.resources.block_diffuse.texture);
@@ -82,7 +85,7 @@ function createBlock(x, y) {
     return container;
 }
 
-/// === DRAG ZONE ===
+// / === DRAG ZONE ===
 function subscribe(obj) {
     obj.interactive = true;
     obj.on('mousedown', onDragStart)

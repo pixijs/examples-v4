@@ -25,7 +25,6 @@ littleRobot.filters = [blurFilter2];
 var count = 0;
 
 app.ticker.add(function() {
-
     count += 0.005;
 
     var blurAmount = Math.cos(count);

@@ -26,7 +26,6 @@ app.stage.addChild(snakeContainer);
 snakeContainer.addChild(strip);
 
 app.ticker.add(function() {
-
     count += 0.1;
 
     // make the snake

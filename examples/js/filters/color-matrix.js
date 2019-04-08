@@ -28,7 +28,7 @@ var light1 = PIXI.Sprite.fromImage('examples/assets/light_rotate_1.png');
 light1.anchor.set(0.5);
 container.addChild(light1);
 
-var panda =  PIXI.Sprite.fromImage('examples/assets/panda.png');
+var panda = PIXI.Sprite.fromImage('examples/assets/panda.png');
 panda.anchor.set(0.5);
 
 container.addChild(panda);
@@ -48,7 +48,7 @@ app.stage.on('pointertap', function() {
 var help = new PIXI.Text('Click or tap to turn filters on / off.', {
     fontFamily: 'Arial',
     fontSize: 12,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     fill: 'white'
 });
 help.y = app.screen.height - 25;
@@ -57,7 +57,6 @@ help.x = 10;
 app.stage.addChild(help);
 
 app.ticker.add(function(delta) {
-
     bg.rotation += 0.01;
     bgFront.rotation -= 0.01;
     light1.rotation += 0.02;

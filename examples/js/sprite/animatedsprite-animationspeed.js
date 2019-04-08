@@ -8,16 +8,15 @@ PIXI.loader
     .load(onAssetsLoaded);
 
 function onAssetsLoaded(loader, resources) {
-
     // create an array to store the textures
-    var textures = [],
-        i;
+    var textures = [];
+    var i;
 
     for (i = 0; i < 10; i++) {
-         var framekey = '0123456789 ' + i + '.ase';
-         var texture = PIXI.Texture.fromFrame(framekey);
-         var time = resources.spritesheet.data.frames[framekey].duration;
-         textures.push({ texture, time });
+        var framekey = '0123456789 ' + i + '.ase';
+        var texture = PIXI.Texture.fromFrame(framekey);
+        var time = resources.spritesheet.data.frames[framekey].duration;
+        textures.push({ texture, time });
     }
 
     var scaling = 4;

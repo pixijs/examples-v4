@@ -29,8 +29,7 @@ dude.on('pointertap', function() {
     bol = !bol;
     if (bol) {
         dude.texture = secondTexture;
-    }
-    else {
+    } else {
         dude.texture = texture;
     }
 });

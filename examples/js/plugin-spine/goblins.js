@@ -9,8 +9,7 @@ PIXI.loader
 app.stage.interactive = true;
 app.stage.buttonMode = true;
 
-function onAssetsLoaded(loader, res)
-{
+function onAssetsLoaded(loader, res) {
     var goblin = new PIXI.spine.Spine(res.goblins.spineData);
 
     // set current skin

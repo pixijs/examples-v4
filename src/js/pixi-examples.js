@@ -12,7 +12,7 @@ function getMajorPixiVersion(pixiVersionString) {
         majorVersion = parseInt(pixiVersionString.substr(1, 1), 10);
     }
 
-    return majorVersion
+    return majorVersion;
 }
 
 jQuery(document).ready(function($) {
@@ -86,13 +86,13 @@ jQuery(document).ready(function($) {
         $.getJSON('examples/manifest.json', function(data) {
             var sections = Object.keys(data);
             for (var i = 0; i < sections.length; i++) {
-                var html = '<span class="section" data-section="' + sections[i] + '">' + sections[i] + '</span><ul data-section="' + sections[i] + '">',
-                    items = data[sections[i]];
+                var html = '<span class="section" data-section="' + sections[i] + '">' + sections[i] + '</span><ul data-section="' + sections[i] + '">';
+                var items = data[sections[i]];
 
                 for (var j = 0; j < items.length; j++) {
                     var plugins = typeof items[j].plugins !== 'undefined' ? items[j].plugins.join(',') : '';
                     var validVersions = typeof items[j].validVersions !== 'undefined' ? items[j].validVersions.join(',') : '';
-                    html += '<li data-src="' + items[j].entry + '" data-plugins="' + plugins  + '" data-validVersions="' + validVersions + '">' + items[j].title + '</li>';
+                    html += '<li data-src="' + items[j].entry + '" data-plugins="' + plugins + '" data-validVersions="' + validVersions + '">' + items[j].title + '</li>';
                 }
                 html += '</ul>';
 
@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
             // Only use the last 5 tags per major version
             var maxTagsPerVersion = 5;
             var taggedVersions = [];
-            bpc.allowedVersions.forEach( function(version) {
+            bpc.allowedVersions.forEach(function(version) {
                 var filtered = data.filter(function(tag) {
                     return tag.ref.indexOf('refs/tags/v' + version) === 0;
                 });
@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
                     filtered = filtered.slice(-maxTagsPerVersion);
                 }
                 taggedVersions = taggedVersions.concat(filtered);
-            })
+            });
 
             taggedVersions = taggedVersions.map(function(tag) {
                 return tag.ref.replace('refs/tags/', '');
@@ -127,7 +127,7 @@ jQuery(document).ready(function($) {
 
             var $selected = $('.select-group .select li[data-val="' + bpc.pixiVersionString + '"]');
             $selected.addClass('selected');
-            $('.select-group .select .current').text($selected.text())
+            $('.select-group .select .current').text($selected.text());
         });
     };
 
@@ -161,11 +161,11 @@ jQuery(document).ready(function($) {
                 bpc.exampleRequiredPlugins = plugins === '' ? [] : plugins.split(',');
 
                 var validVersions = $(this).attr('data-validVersions');
-                bpc.exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) {return parseInt(v, 10)});
+                bpc.exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
 
                 $.ajax({
                     url: 'examples/js/' + $(this).parent().attr('data-section') + '/' + $(this).attr('data-src'),
-                    dataType: "text",
+                    dataType: 'text',
                     success: function(data) {
                         bpc.exampleSourceCode = data;
 
@@ -190,7 +190,7 @@ jQuery(document).ready(function($) {
             var pixiUrl = '';
 
             if (bpc.pixiVersionString === 'local') {
-                pixiUrl = "dist/pixi.js"
+                pixiUrl = 'dist/pixi.js';
             } else if (bpc.majorPixiVersion === 3) { // pull v3 from github cdn
                 pixiUrl = 'https://cdn.rawgit.com/GoodBoyDigital/pixi.js/' + bpc.pixiVersionString + '/bin/pixi.js';
             } else { // other versions come from S3
@@ -207,16 +207,16 @@ jQuery(document).ready(function($) {
                 html += '<script src="pixi-plugins/pixi-legacy.js"></script>';
             }
 
-            for (i = 0; i < bpc.exampleRequiredPlugins.length; i++) {
-                html += '<script src="pixi-plugins/' + bpc.exampleRequiredPlugins[i] + '.js"></script>';
+            for (var j = 0; j < bpc.exampleRequiredPlugins.length; j++) {
+                html += '<script src="pixi-plugins/' + bpc.exampleRequiredPlugins[j] + '.js"></script>';
             }
 
             bpc.editor = CodeMirror.fromTextArea(document.getElementById('code'), bpc.editorOptions);
 
             if (bpc.exampleRequiredPlugins.length) {
-                $('#code-header').text("Example Code (plugins used: " + bpc.exampleRequiredPlugins.toString() + ")");
+                $('#code-header').text('Example Code (plugins used: ' + bpc.exampleRequiredPlugins.toString() + ')');
             } else {
-                $('#code-header').text("Example Code");
+                $('#code-header').text('Example Code');
             }
 
             if (!bpc.exampleValidVersions.length || bpc.exampleValidVersions.indexOf(bpc.majorPixiVersion) > -1) {
@@ -227,14 +227,14 @@ jQuery(document).ready(function($) {
             } else {
                 $('#example-title').html(
                     bpc.exampleTitle
-                    + "<br><br><br><br><br><br><br>"
-                    + "The selected version of PixiJS does not work with this example."
-                    + "<br><br>"
-                    + "Selected version: v" + bpc.majorPixiVersion
-                    + "<br><br>"
-                    + "Required version: v" + bpc.exampleValidVersions.toString()
-                    + "<br><br><br><br><br>"
-                )
+                    + '<br><br><br><br><br><br><br>'
+                    + 'The selected version of PixiJS does not work with this example.'
+                    + '<br><br>'
+                    + 'Selected version: v' + bpc.majorPixiVersion
+                    + '<br><br>'
+                    + 'Required version: v' + bpc.exampleValidVersions.toString()
+                    + '<br><br><br><br><br>'
+                );
 
                 $('.example-frame').hide();
             }
@@ -270,16 +270,16 @@ jQuery(document).ready(function($) {
         };
 
         bpc.updateMenu = function() {
-            $('.main-nav .main-menu ul li').each(function(){
-                var validVersions = $(this).attr('data-validVersions')
-                var exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) {return parseInt(v, 10)});
-                if (exampleValidVersions.indexOf(bpc.majorPixiVersion) === -1){
+            $('.main-nav .main-menu ul li').each(function() {
+                var validVersions = $(this).attr('data-validVersions');
+                var exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
+                if (exampleValidVersions.indexOf(bpc.majorPixiVersion) === -1) {
                     $(this).addClass('invalid');
                 } else {
                     $(this).removeClass('invalid');
                 }
             });
-        }
+        };
 
         bpc.updateMenu();
 
@@ -329,7 +329,7 @@ jQuery(document).ready(function($) {
 
                 bpc.pixiVersionString = $(this).attr('data-val');
                 bpc.majorPixiVersion = getMajorPixiVersion(bpc.pixiVersionString);
-                window.history.pushState(bpc.pixiVersionString, null, '?v=' + bpc.pixiVersionString + location.hash);
+                window.history.pushState(bpc.pixiVersionString, null, '?v=' + bpc.pixiVersionString + window.location.hash);
 
                 bpc.updateMenu();
 
@@ -351,29 +351,25 @@ jQuery(document).ready(function($) {
     };
 
     bpc.SaveToDisk = function(fileURL, fileName) {
-        // for non-IE
-        if (!window.ActiveXObject) {
+        if (!window.ActiveXObject) { // for non-IE
             var save = document.createElement('a');
             save.href = fileURL;
             save.target = '_blank';
             save.download = fileName || 'unknown';
 
             var evt = new MouseEvent('click', {
-                'view': window,
-                'bubbles': true,
-                'cancelable': false
+                view: window,
+                bubbles: true,
+                cancelable: false
             });
             save.dispatchEvent(evt);
 
             (window.URL || window.webkitURL).revokeObjectURL(save.href);
-        }
-
-        // for IE < 11
-        else if (!!window.ActiveXObject && document.execCommand) {
-            var _window = window.open(fileURL, '_blank');
-            _window.document.close();
-            _window.document.execCommand('SaveAs', true, fileName || fileURL);
-            _window.close();
+        } else if (!!window.ActiveXObject && document.execCommand) { // for IE < 11
+            var newWindow = window.open(fileURL, '_blank');
+            newWindow.document.close();
+            newWindow.document.execCommand('SaveAs', true, fileName || fileURL);
+            newWindow.close();
         }
     };
 

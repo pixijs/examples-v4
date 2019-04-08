@@ -2,12 +2,12 @@ var app = new PIXI.Application();
 document.body.appendChild(app.view);
 
 // create a new background sprite
-var background = new PIXI.Sprite.fromImage('examples/assets/bg_rotate.jpg');
+var background = PIXI.Sprite.fromImage('examples/assets/bg_rotate.jpg');
 background.width = 800;
 background.height = 600;
 app.stage.addChild(background);
 
-//speed up the process, because OVERLAY and HARD_LIGHT will use copyTex instead of readPixels
+// speed up the process, because OVERLAY and HARD_LIGHT will use copyTex instead of readPixels
 app.stage.filters = [new PIXI.filters.AlphaFilter()];
 app.stage.filterArea = app.screen;
 
@@ -17,12 +17,11 @@ var dudeArray = [];
 var totaldudes = 20;
 var texture = PIXI.Texture.fromImage('examples/assets/flowerTop.png');
 
-for (var i = 0; i < totaldudes; i++)
-{
+for (var i = 0; i < totaldudes; i++) {
     // create a new Sprite that uses the image name that we just generated as its source
     var dude = new PIXI.Sprite(texture);
-	// setting renderer plugin 'picture', from pixi-picture
-	dude.pluginName = 'picture';
+    // setting renderer plugin 'picture', from pixi-picture
+    dude.pluginName = 'picture';
 
     dude.anchor.set(0.5);
 
@@ -34,9 +33,9 @@ for (var i = 0; i < totaldudes; i++)
     dude.y = Math.floor(Math.random() * app.screen.height);
 
     // The important bit of this example, this is how you change the default blend mode of the sprite
-    dude.blendMode = Math.random() > 0.5 ?
-        PIXI.BLEND_MODES.OVERLAY:
-        PIXI.BLEND_MODES.HARD_LIGHT;
+    dude.blendMode = Math.random() > 0.5
+        ? PIXI.BLEND_MODES.OVERLAY
+        : PIXI.BLEND_MODES.HARD_LIGHT;
 
     // create some extra properties that will control movement
     dude.direction = Math.random() * Math.PI * 2;
@@ -63,13 +62,11 @@ var dudeBounds = new PIXI.Rectangle(
     app.screen.height + dudeBoundsPadding * 2
 );
 
-var tick = 0;
+var tick = 0; // eslint-disable-line no-unused-vars
 
 app.ticker.add(function() {
-
     // iterate through the dudes and update the positions
-    for (var i = 0; i < dudeArray.length; i++)
-    {
+    for (var i = 0; i < dudeArray.length; i++) {
         var dude = dudeArray[i];
         dude.direction += dude.turningSpeed * 0.01;
         dude.x += Math.sin(dude.direction) * dude.speed;
@@ -79,15 +76,13 @@ app.ticker.add(function() {
         // wrap the dudes by testing their bounds...
         if (dude.x < dudeBounds.x) {
             dude.x += dudeBounds.width;
-        }
-        else if (dude.x > dudeBounds.x + dudeBounds.width) {
+        } else if (dude.x > dudeBounds.x + dudeBounds.width) {
             dude.x -= dudeBounds.width;
         }
 
         if (dude.y < dudeBounds.y) {
             dude.y += dudeBounds.height;
-        }
-        else if (dude.y > dudeBounds.y + dudeBounds.height) {
+        } else if (dude.y > dudeBounds.y + dudeBounds.height) {
             dude.y -= dudeBounds.height;
         }
     }

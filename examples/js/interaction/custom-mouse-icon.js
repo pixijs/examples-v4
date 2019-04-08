@@ -1,11 +1,11 @@
-var app = new PIXI.Application(800, 600, { backgroundColor : 0x1099bb });
+var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
-//Css style for icons
+// Css style for icons
 var defaultIcon = "url('examples/assets/bunny.png'),auto";
 var hoverIcon = "url('examples/assets/bunny_saturated.png'),auto";
 
-//Add custom cursor styles
+// Add custom cursor styles
 app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
 app.renderer.plugins.interaction.cursorStyles.hover = hoverIcon;
 
@@ -32,13 +32,12 @@ var buttonPositions = [
 ];
 
 for (var i = 0; i < 5; i++) {
-
     var button = new PIXI.Sprite(textureButton);
-    button.cursor = "hover";
+    button.cursor = 'hover';
 
     button.anchor.set(0.5);
-    button.x = buttonPositions[i*2];
-    button.y = buttonPositions[i*2 + 1];
+    button.x = buttonPositions[i * 2];
+    button.y = buttonPositions[i * 2 + 1];
 
     // make the button interactive...
     button.interactive = true;
@@ -53,17 +52,17 @@ for (var i = 0; i < 5; i++) {
         .on('pointerover', onButtonOver)
         .on('pointerout', onButtonOut);
 
-        // Use mouse-only events
-        // .on('mousedown', onButtonDown)
-        // .on('mouseup', onButtonUp)
-        // .on('mouseupoutside', onButtonUp)
-        // .on('mouseover', onButtonOver)
-        // .on('mouseout', onButtonOut)
+    // Use mouse-only events
+    // .on('mousedown', onButtonDown)
+    // .on('mouseup', onButtonUp)
+    // .on('mouseupoutside', onButtonUp)
+    // .on('mouseover', onButtonOver)
+    // .on('mouseout', onButtonOut)
 
-        // Use touch-only events
-        // .on('touchstart', onButtonDown)
-        // .on('touchend', onButtonUp)
-        // .on('touchendoutside', onButtonUp)
+    // Use touch-only events
+    // .on('touchstart', onButtonDown)
+    // .on('touchend', onButtonUp)
+    // .on('touchendoutside', onButtonUp)
 
     // add it to the stage
     app.stage.addChild(button);
@@ -76,7 +75,7 @@ for (var i = 0; i < 5; i++) {
 buttons[0].scale.set(1.2);
 buttons[2].rotation = Math.PI / 10;
 buttons[3].scale.set(0.8);
-buttons[4].scale.set(0.8,1.2);
+buttons[4].scale.set(0.8, 1.2);
 buttons[4].rotation = Math.PI;
 
 function onButtonDown() {
@@ -89,8 +88,7 @@ function onButtonUp() {
     this.isdown = false;
     if (this.isOver) {
         this.texture = textureButtonOver;
-    }
-    else {
+    } else {
         this.texture = textureButton;
     }
 }

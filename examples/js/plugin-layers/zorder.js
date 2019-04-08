@@ -4,18 +4,18 @@
 var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
-//META STUFF, groups exist without stage just fine
+// META STUFF, groups exist without stage just fine
 
 // z-index = 0, sorting = true;
 var greenGroup = new PIXI.display.Group(0, true);
-greenGroup.on('sort', function (sprite) {
-    //green bunnies go down
+greenGroup.on('sort', function(sprite) {
+    // green bunnies go down
     sprite.zOrder = -sprite.y;
 });
 
 // z-index = 1, sorting = true, we can provide zOrder function directly in constructor
-var blueGroup = new PIXI.display.Group(1, function (sprite) {
-    //blue bunnies go up
+var blueGroup = new PIXI.display.Group(1, function(sprite) {
+    // blue bunnies go up
     sprite.zOrder = +sprite.y;
 });
 
@@ -25,10 +25,10 @@ var dragGroup = new PIXI.display.Group(2, false);
 // Shadows are the lowest
 var shadowGroup = new PIXI.display.Group(-1, false);
 
-//specify display list component
+// specify display list component
 app.stage = new PIXI.display.Stage();
 app.stage.group.enableSort = true;
-//sorry, group cant exist without layer yet :(
+// sorry, group cant exist without layer yet :(
 app.stage.addChild(new PIXI.display.Layer(greenGroup));
 app.stage.addChild(new PIXI.display.Layer(blueGroup));
 app.stage.addChild(new PIXI.display.Layer(dragGroup));
@@ -38,8 +38,8 @@ var blurFilter = new PIXI.filters.BlurFilter();
 blurFilter.blur = 0.5;
 
 // create a texture from an image path
-var texture_green = PIXI.Texture.fromImage('examples/assets/bunny_green.png');
-var texture_blue = PIXI.Texture.fromImage('examples/assets/bunny_blue.png');
+var textureGreen = PIXI.Texture.fromImage('examples/assets/bunny_green.png');
+var textureBlue = PIXI.Texture.fromImage('examples/assets/bunny_blue.png');
 
 // make obsolete containers. Why do we need them?
 // Just to show that we can do everything without caring of actual parent container
@@ -50,16 +50,15 @@ app.stage.addChild(bunniesOdd);
 app.stage.addChild(bunniesBlue);
 app.stage.addChild(bunniesEven);
 
-var ind = [];
 for (var i = 0; i < 15; i++) {
-    var bunny = new PIXI.Sprite(texture_green);
+    var bunny = new PIXI.Sprite(textureGreen);
     bunny.width = 50;
     bunny.height = 50;
     bunny.position.set(100 + 20 * i, 100 + 20 * i);
     bunny.anchor.set(0.5);
     // that thing is required
     bunny.parentGroup = greenGroup;
-    if (i % 2 == 0) {
+    if (i % 2 === 0) {
         bunniesEven.addChild(bunny);
     } else {
         bunniesOdd.addChild(bunny);
@@ -69,7 +68,7 @@ for (var i = 0; i < 15; i++) {
 }
 
 for (var i = 9; i >= 0; i--) {
-    var bunny = new PIXI.Sprite(texture_blue);
+    var bunny = new PIXI.Sprite(textureBlue);
     bunny.width = 50;
     bunny.height = 50;
     bunny.position.set(400 + 20 * i, 400 - 20 * i);
@@ -96,9 +95,9 @@ function subscribe(obj) {
 function addShadow(obj) {
     var gr = new PIXI.Graphics();
     gr.beginFill(0x0, 1);
-    //yes , I know bunny size, I'm sorry for this hack
+    // yes , I know bunny size, I'm sorry for this hack
     var scale = 1.1;
-    gr.drawRect(-25/2 * scale, -36/2 * scale, 25 * scale, 36 * scale);
+    gr.drawRect(-25 / 2 * scale, -36 / 2 * scale, 25 * scale, 36 * scale);
     gr.endFill();
     gr.filters = [blurFilter];
 

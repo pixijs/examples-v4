@@ -16,7 +16,7 @@ function createGradTexture() {
     // use canvas2d API to create gradient
     var grd = ctx.createLinearGradient(0, 0, quality, 0);
     grd.addColorStop(0, 'rgba(255, 255, 255, 0.0)');
-    grd.addColorStop(.3, 'cyan');
+    grd.addColorStop(0.3, 'cyan');
     grd.addColorStop(0.7, 'red');
     grd.addColorStop(1, 'green');
 

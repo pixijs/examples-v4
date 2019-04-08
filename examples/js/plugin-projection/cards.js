@@ -22,7 +22,7 @@ cards.scale3d.set(1.5);
 camera.addChild(cards);
 
 var shadowGroup = new PIXI.display.Group(1);
-var cardsGroup = new PIXI.display.Group(2, function (item) {
+var cardsGroup = new PIXI.display.Group(2, function(item) {
     item.zOrder = item.getDepth();
     item.parent.checkFace();
 });
@@ -30,7 +30,7 @@ var cardsGroup = new PIXI.display.Group(2, function (item) {
 // Layers are 2d elements but we use them only to show stuff, not to transform items, so its fine :)
 camera.addChild(new PIXI.display.Layer(shadowGroup));
 camera.addChild(new PIXI.display.Layer(cardsGroup));
-//we could also add layers in the stage, but then we'll need extra layer for the text
+// we could also add layers in the stage, but then we'll need extra layer for the text
 
 // load assets
 loader.add('cards', 'examples/assets/pixi-projection/cards.json');
@@ -43,27 +43,27 @@ blurFilter.blur = 0.2;
 
 function CardSprite() {
     PIXI.projection.Container3d.call(this);
-    let tex = loader.resources['cards'].textures;
+    let tex = loader.resources.cards.textures;
 
-    //shadow will be under card
-    this.shadow = new PIXI.projection.Sprite3d(tex["black.png"]);
+    // shadow will be under card
+    this.shadow = new PIXI.projection.Sprite3d(tex['black.png']);
     this.shadow.anchor.set(0.5);
     this.shadow.scale3d.set(0.98);
     this.shadow.alpha = 0.7;
-    //TRY IT WITH FILTER:
+    // TRY IT WITH FILTER:
     this.shadow.filters = [blurFilter];
-    //all shadows are UNDER all cards
+    // all shadows are UNDER all cards
     this.shadow.parentGroup = shadowGroup;
     this.inner = new PIXI.projection.Container3d();
-    //cards are above the shadows
-    //either they have back, either face
+    // cards are above the shadows
+    // either they have back, either face
     this.inner.parentGroup = cardsGroup;
 
     this.addChild(this.shadow);
     this.addChild(this.inner);
 
-    //construct "inner" from back and face
-    this.back = new PIXI.projection.Sprite3d(tex["cover1.png"]);
+    // construct "inner" from back and face
+    this.back = new PIXI.projection.Sprite3d(tex['cover1.png']);
     this.back.anchor.set(0.5);
     this.face = new PIXI.projection.Container3d();
     this.inner.addChild(this.back);
@@ -73,7 +73,7 @@ function CardSprite() {
     this.inner.euler.y = Math.PI;
     this.scale3d.set(0.2);
 
-    //construct "face" from four sprites
+    // construct "face" from four sprites
     this.createFace();
 }
 
@@ -82,7 +82,7 @@ CardSprite.prototype = Object.create(PIXI.projection.Container3d.prototype);
 CardSprite.prototype.createFace = function() {
     var face = this.face;
     face.removeChildren();
-    var tex = loader.resources['cards'].textures;
+    var tex = loader.resources.cards.textures;
     var sprite = new PIXI.projection.Sprite3d(tex['white1.png']);
     var sprite2 = new PIXI.projection.Sprite3d(PIXI.Texture.EMPTY);
     var sprite3 = new PIXI.projection.Sprite3d(PIXI.Texture.EMPTY);
@@ -106,23 +106,23 @@ CardSprite.prototype.createFace = function() {
 };
 
 CardSprite.prototype.updateFace = function() {
-    var tex = loader.resources['cards'].textures;
-    var code = this.showCode == -1 ? 0: this.showCode;
+    var tex = loader.resources.cards.textures;
+    var code = this.showCode === -1 ? 0 : this.showCode;
     var num = code & 0xf;
     var suit = code >> 4;
 
     var face = this.face;
-    face.children[1].texture = num > 0 ? tex[suit % 2 + "_" + num + ".png"]: PIXI.Texture.EMPTY;
+    face.children[1].texture = num > 0 ? tex[(suit % 2) + '_' + num + '.png'] : PIXI.Texture.EMPTY;
     if (!face.children[1].texture) {
-        console.log("FAIL 1 ", (suit % 2) + "_" + num + ".png");
+        console.log('FAIL 1 ', (suit % 2) + '_' + num + '.png');
     }
-    face.children[2].texture = suit !== 0 ? tex[suit + "_big.png"] : PIXI.Texture.EMPTY;
+    face.children[2].texture = suit !== 0 ? tex[suit + '_big.png'] : PIXI.Texture.EMPTY;
     if (!face.children[2].texture) {
-        console.log("FAIL 2", suit + "_big.png");
+        console.log('FAIL 2', suit + '_big.png');
     }
-    face.children[3].texture = suit !== 0 ? tex[suit + "_small.png"] : PIXI.Texture.EMPTY;
+    face.children[3].texture = suit !== 0 ? tex[suit + '_small.png'] : PIXI.Texture.EMPTY;
     if (!face.children[3].texture) {
-        console.log("FAIL 3", suit + "_small.png");
+        console.log('FAIL 3', suit + '_small.png');
     }
 };
 
@@ -131,12 +131,12 @@ CardSprite.prototype.update = function(dt) {
     if (this.code > 0 && inner.euler.y > 0) {
         inner.euler.y = Math.max(0, inner.euler.y - dt * 5);
     }
-    if (this.code == 0 && inner.euler.y < Math.PI) {
+    if (this.code === 0 && inner.euler.y < Math.PI) {
         inner.euler.y = Math.min(Math.PI, inner.euler.y + dt * 5);
     }
     inner.position3d.z = -Math.sin(inner.euler.y) * this.back.width;
 
-    //assignment is overriden, so its actually calling euler.copy(this.euler)
+    // assignment is overriden, so its actually calling euler.copy(this.euler)
     this.shadow.euler = inner.euler;
 };
 
@@ -145,13 +145,13 @@ CardSprite.prototype.checkFace = function() {
     var cc;
 
     if (!inner.isFrontFace()) {
-        //user sees the back
+        // user sees the back
         cc = 0;
     } else {
-        //user sees the face
+        // user sees the face
         cc = this.showCode || this.code;
     }
-    if (cc==0) {
+    if (cc === 0) {
         this.back.renderable = true;
         this.face.renderable = false;
     } else {
@@ -167,11 +167,11 @@ CardSprite.prototype.checkFace = function() {
 
 function dealHand() {
     cards.removeChildren();
-    for (var i=0;i<5;i++) {
+    for (var i = 0; i < 5; i++) {
         var card = new CardSprite();
-        card.position3d.x = 56 * (i-2);
-        if ((Math.random()*3 | 0) == 0) {
-            onClick({target: card});
+        card.position3d.x = 56 * (i - 2);
+        if ((Math.random() * 3 | 0) === 0) {
+            onClick({ target: card });
         }
         card.update(0);
         card.interactive = true;
@@ -183,9 +183,9 @@ function dealHand() {
 
 function onClick(event) {
     var target = event.target;
-    if (target.code == 0) {
-        var num = (Math.random()*13 | 0) + 2;
-        var suit = (Math.random()*4 | 0) + 1;
+    if (target.code === 0) {
+        var num = (Math.random() * 13 | 0) + 2;
+        var suit = (Math.random() * 4 | 0) + 1;
         target.code = suit * 16 + num;
     } else {
         target.code = 0;
@@ -194,7 +194,7 @@ function onClick(event) {
 
 function addText(txt) {
     var style = {
-        font: "normal 80px Arial",
+        font: 'normal 80px Arial',
         fill: '#f5ffe3',
         dropShadow: true,
         dropShadowColor: 'rgba(1, 1, 1, 0.4)',
@@ -208,7 +208,7 @@ function addText(txt) {
 }
 
 function onAssetsLoaded() {
-    //background must be UNDER camera, it doesnt have z-index or any other bullshit for camera
+    // background must be UNDER camera, it doesnt have z-index or any other bullshit for camera
     app.stage.addChildAt(new PIXI.Sprite(loader.resources.table.texture), 0);
     dealHand();
     addText('Tap on cards');
@@ -217,7 +217,7 @@ function onAssetsLoaded() {
 }
 
 app.ticker.add(function(deltaTime) {
-    for (var i=0; i<cards.children.length; i++) {
+    for (var i = 0; i < cards.children.length; i++) {
         cards.children[i].update(deltaTime / 60.0);
     }
 

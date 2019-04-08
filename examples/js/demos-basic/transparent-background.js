@@ -14,7 +14,6 @@ bunny.y = app.screen.height / 2;
 app.stage.addChild(bunny);
 
 app.ticker.add(function() {
-
     // just for fun, let's rotate mr rabbit a little
     bunny.rotation += 0.1;
 });

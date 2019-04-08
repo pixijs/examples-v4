@@ -8,8 +8,7 @@ PIXI.loader
 
 app.stage.interactive = true;
 
-function onAssetsLoaded(loader, res)
-{
+function onAssetsLoaded(loader, res) {
     // create a spine boy
     var spineBoy = new PIXI.spine.Spine(res.spineboy.spineData);
 

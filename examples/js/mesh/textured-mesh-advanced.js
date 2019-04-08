@@ -26,7 +26,6 @@ app.stage.addChild(g);
 
 // start animating
 app.ticker.add(function() {
-
     count += 0.1;
 
     // make the snake
@@ -37,20 +36,19 @@ app.ticker.add(function() {
     renderPoints();
 });
 
-function renderPoints () {
-
+function renderPoints() {
     g.clear();
 
-    g.lineStyle(2,0xffc2c2);
-    g.moveTo(points[0].x,points[0].y);
+    g.lineStyle(2, 0xffc2c2);
+    g.moveTo(points[0].x, points[0].y);
 
     for (var i = 1; i < points.length; i++) {
-        g.lineTo(points[i].x,points[i].y);
+        g.lineTo(points[i].x, points[i].y);
     }
 
     for (var i = 1; i < points.length; i++) {
         g.beginFill(0xff0022);
-        g.drawCircle(points[i].x,points[i].y,10);
+        g.drawCircle(points[i].x, points[i].y, 10);
         g.endFill();
     }
 }

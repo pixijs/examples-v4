@@ -15,9 +15,8 @@ var bounds = new PIXI.Rectangle(
 );
 var maggots = [];
 
-for (var i = 0; i < 20; i++)
-{
-    var maggot =  PIXI.Sprite.fromImage('examples/assets/maggot.png');
+for (var i = 0; i < 20; i++) {
+    var maggot = PIXI.Sprite.fromImage('examples/assets/maggot.png');
     maggot.anchor.set(0.5);
     container.addChild(maggot);
 
@@ -30,9 +29,8 @@ for (var i = 0; i < 20; i++)
 
     maggot.scale.set(1 + Math.random() * 0.3);
     maggot.original = new PIXI.Point();
-	maggot.original.copy(maggot.scale);
+    maggot.original.copy(maggot.scale);
     maggots.push(maggot);
-
 }
 
 var displacementSprite = PIXI.Sprite.fromImage('examples/assets/pixi-filters/displace.png');
@@ -66,8 +64,7 @@ app.stage
     .on('mousemove', onPointerMove)
     .on('touchmove', onPointerMove);
 
-function onPointerMove(eventData)
-{
+function onPointerMove(eventData) {
     ring.visible = true;
 
     displacementSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);
@@ -77,7 +74,6 @@ function onPointerMove(eventData)
 var count = 0;
 
 app.ticker.add(function() {
-
     count += 0.05;
 
     for (var i = 0; i < maggots.length; i++) {
@@ -87,21 +83,19 @@ app.ticker.add(function() {
         maggot.x += Math.sin(maggot.direction) * maggot.speed;
         maggot.y += Math.cos(maggot.direction) * maggot.speed;
 
-        maggot.rotation = -maggot.direction - Math.PI/2;
+        maggot.rotation = -maggot.direction - Math.PI / 2;
         maggot.scale.x = maggot.original.x + Math.sin(count) * 0.2;
 
         // wrap the maggots around as the crawl
         if (maggot.x < bounds.x) {
             maggot.x += bounds.width;
-        }
-        else if (maggot.x > bounds.x + bounds.width) {
+        } else if (maggot.x > bounds.x + bounds.width) {
             maggot.x -= bounds.width;
         }
 
         if (maggot.y < bounds.y) {
             maggot.y += bounds.height;
-        }
-        else if (maggot.y > bounds.y + bounds.height) {
+        } else if (maggot.y > bounds.y + bounds.height) {
             maggot.y -= bounds.height;
         }
     }
