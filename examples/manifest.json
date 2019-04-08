@@ -339,7 +339,7 @@
     ],
     "plugin-compressed-textures": [
         {
-            "title": "v4 Extension chooser",
+            "title": "Extension chooser",
             "entry": "dds.js",
             "plugins": [
                 "pixi-compressed-textures"
