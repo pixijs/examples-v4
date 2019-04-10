@@ -35,21 +35,21 @@
     ],
     "demos-advanced": [
         {
-			"title": "Slots",
-			"entry": "slots.js"
-		},
-		{
-		    "title": "Scratchcard",
-			"entry": "scratchcard.js"
-		},
-		{
+            "title": "Slots",
+            "entry": "slots.js"
+        },
+        {
+            "title": "Scratchcard",
+            "entry": "scratchcard.js"
+        },
+        {
             "title": "Mouse Trail",
             "entry": "mouse-trail.js"
         },
-		{
-			"title": "Star Warp",
-			"entry": "star-warp.js"
-		}
+        {
+            "title": "Star Warp",
+            "entry": "star-warp.js"
+        }
     ],
     "sprite": [
         {
@@ -68,7 +68,7 @@
             "title": "Animated Sprite - Jet",
             "entry": "animatedsprite-jet.js"
         },
-		{
+        {
             "title": "Animated Sprite Speed",
             "entry": "animatedsprite-animationspeed.js"
         },
@@ -123,9 +123,9 @@
             "entry": "dragging.js"
         },
         {
-			"title": "Custom mouse icon",
-			"entry": "custom-mouse-icon.js"
-		}
+            "title": "Custom mouse icon",
+            "entry": "custom-mouse-icon.js"
+        }
     ],
     "filters": [
         {
@@ -136,7 +136,7 @@
             "title": "Color Matrix",
             "entry": "color-matrix.js"
         },
-		{
+        {
             "title": "Mouse Blending",
             "entry": "mouse-blending.js"
         },
@@ -144,16 +144,16 @@
             "title": "Displacement Map - Crawlies",
             "entry": "displacement-map-crawlies.js"
         },
-		{
-			"title": "Displacement Map - Flag",
-			"entry": "displacement-map-flag.js"
-		},
-		{
+        {
+            "title": "Displacement Map - Flag",
+            "entry": "displacement-map-flag.js"
+        },
+        {
             "title": "Custom Filter",
             "entry": "custom.js"
         }
-	],
-	"mesh": [
+    ],
+    "mesh": [
         {
             "title": "Textured Mesh - Basic",
             "entry": "textured-mesh-basic.js"
@@ -162,8 +162,8 @@
             "title": "Textured Mesh - Advanced",
             "entry": "textured-mesh-advanced.js"
         }
-	],
-	"textures": [
+    ],
+    "textures": [
         {
             "title": "Texture Rotate",
             "entry": "texture-rotate.js"
@@ -249,7 +249,7 @@
                 "pixi-projection"
             ]
         },
-		{
+        {
             "title": "2D Quad bilinear",
             "entry": "quad-bi.js",
             "plugins": [
@@ -305,7 +305,7 @@
                 "pixi-layers"
             ]
         },
-		{
+        {
             "title": "Z-order",
             "entry": "zorder.js",
             "plugins": [
