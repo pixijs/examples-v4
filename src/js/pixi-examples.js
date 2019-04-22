@@ -161,7 +161,7 @@ jQuery(document).ready(function($) {
                 bpc.exampleRequiredPlugins = plugins === '' ? [] : plugins.split(',');
 
                 var validVersions = $(this).attr('data-validVersions');
-                bpc.exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
+                bpc.exampleValidVersions = validVersions === '' ? [4] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
 
                 $.ajax({
                     url: 'examples/js/' + $(this).parent().attr('data-section') + '/' + $(this).attr('data-src'),
@@ -272,7 +272,7 @@ jQuery(document).ready(function($) {
         bpc.updateMenu = function() {
             $('.main-nav .main-menu ul li').each(function() {
                 var validVersions = $(this).attr('data-validVersions');
-                var exampleValidVersions = validVersions === '' ? [4, 5] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
+                var exampleValidVersions = validVersions === '' ? [4] : validVersions.split(',').map(function(v) { return parseInt(v, 10); });
                 if (exampleValidVersions.indexOf(bpc.majorPixiVersion) === -1) {
                     $(this).addClass('invalid');
                 } else {
@@ -374,7 +374,6 @@ jQuery(document).ready(function($) {
     };
 
     bpc.init = function() {
-        if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) bpc.clickType = 'click';
         $(window).resize(bpc.resize);
 
         bpc.loadScriptsAsync();
