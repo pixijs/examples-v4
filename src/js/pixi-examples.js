@@ -17,7 +17,7 @@ function getMajorPixiVersion(pixiVersionString) {
 
 jQuery(document).ready(function($) {
     window.onpopstate = function(event) {
-        bpc.pixiVersionString = getParameterByName('v') || 'release';
+        bpc.pixiVersionString = getParameterByName('v') || 'v4.x';
         bpc.generateIFrameContent();
 
         $('.select-group .select li.selected').removeClass('selected');
@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
     var bpc = bpc || {};
 
     bpc.allowedVersions = [4];
-    bpc.pixiVersionString = getParameterByName('v') || 'release';
+    bpc.pixiVersionString = getParameterByName('v') || 'v4.x';
     bpc.majorPixiVersion = getMajorPixiVersion(bpc.pixiVersionString);
 
     bpc.exampleUrl = '';
@@ -191,8 +191,6 @@ jQuery(document).ready(function($) {
 
             if (bpc.pixiVersionString === 'local') {
                 pixiUrl = 'dist/pixi.js';
-            } else if (bpc.majorPixiVersion === 3) { // pull v3 from github cdn
-                pixiUrl = 'https://cdn.rawgit.com/GoodBoyDigital/pixi.js/' + bpc.pixiVersionString + '/bin/pixi.js';
             } else { // other versions come from S3
                 pixiUrl = 'https://d157l7jdn8e5sf.cloudfront.net/' + bpc.pixiVersionString + '/pixi.js';
             }
