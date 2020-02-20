@@ -12,7 +12,7 @@ app.stage.addChild(sprite);
 
 var step = 0;
 
-app.ticker.add((delta) => {
+app.ticker.add(function(delta) {
     step += delta;
     sprite.rotation = step * 0.1;
 });
@@ -30,7 +30,7 @@ sprite2.anchor.set(0.5, 1.0);
 sprite2.proj.affine = PIXI.projection.AFFINE.AXIS_X;
 scalingContainer.addChild(sprite2);
 
-app.ticker.add(() => {
+app.ticker.add(function() {
     sprite2.rotation = step * 0.1;
 });
 
@@ -65,7 +65,7 @@ sprite3.scale.set(0.3, 0.5); // make it small but tall!
 // fortunately, its `true` by default
 isometryPlane.addChild(sprite3);
 
-app.ticker.add(() => {
+app.ticker.add(function() {
     sprite3.rotation = step * 0.05;
     var radius = 100; var
         speed = 0.005;

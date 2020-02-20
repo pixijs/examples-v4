@@ -7,7 +7,7 @@ var HEIGHT = H / resolution;
 // LAYERS plugin is here: https://github.com/pixijs/pixi-display/tree/layers
 // LIGHTS plugin is here: https://github.com/pixijs/pixi-lights/tree/v4.x
 
-var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution });
+var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution: resolution });
 document.body.appendChild(app.view);
 
 var stage = app.stage = new PIXI.display.Stage();
@@ -46,7 +46,7 @@ stage.addChild(new PIXI.lights.AmbientLight(null, 0.6));
 var light = new PIXI.lights.PointLight(0xffffff, 1);
 light.position.set(525, 160);
 stage.addChild(light);
-app.ticker.add(() => {
+app.ticker.add(function() {
     light.position.copy(app.renderer.plugins.interaction.mouse.global);
 });
 

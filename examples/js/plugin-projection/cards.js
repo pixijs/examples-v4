@@ -43,7 +43,7 @@ blurFilter.blur = 0.2;
 
 function CardSprite() {
     PIXI.projection.Container3d.call(this);
-    let tex = loader.resources.cards.textures;
+    var tex = loader.resources.cards.textures;
 
     // shadow will be under card
     this.shadow = new PIXI.projection.Sprite3d(tex['black.png']);

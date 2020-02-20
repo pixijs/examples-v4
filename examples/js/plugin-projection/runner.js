@@ -88,13 +88,13 @@ function onAssetsLoaded(loader, res) {
     app.start();
 }
 
-app.ticker.add((delta) => {
+app.ticker.add(function(delta) {
     pixie.position.x += 10 * delta;
 
     // camera looks on pixi!
     camera.position3d.x = pixie.position.x;
 
-    objs.forEach((obj) => {
+    objs.forEach(function(obj) {
         if (obj.position.x + obj.texture.width < pixie.position.x - 500) {
             obj.position.x += repeats * obj.texture.width;
         }

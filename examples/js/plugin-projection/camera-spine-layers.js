@@ -98,7 +98,7 @@ function onAssetsLoaded() {
 
 var ang = 0;
 
-app.ticker.add(() => {
+app.ticker.add(function() {
     debugGraphics.clear();
     debugGraphics.lineStyle(2, 0xffffff, 1.0);
     alienContainer.children.forEach(function(alien) {

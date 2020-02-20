@@ -14,23 +14,22 @@ background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
 
-var shaderFrag = `
-precision mediump float;
-
-uniform vec2 mouse;
-uniform vec2 resolution;
-uniform float time;
-
-void main() {
-  //pixel coords are inverted in framebuffer
-  vec2 pixelPos = vec2(gl_FragCoord.x, resolution.y - gl_FragCoord.y);
-  if (length(mouse - pixelPos) < 25.0) {
-      gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0) * 0.7; //yellow circle, alpha=0.7
-  } else {
-      gl_FragColor = vec4( sin(time), mouse.x/resolution.x, mouse.y/resolution.y, 1) * 0.5; // blend with underlying image, alpha=0.5
-  }
-}
-`;
+var shaderFrag = '';
+shaderFrag += 'precision mediump float;\n';
+shaderFrag += '\n';
+shaderFrag += 'uniform vec2 mouse;\n';
+shaderFrag += 'uniform vec2 resolution;\n';
+shaderFrag += 'uniform float time;\n';
+shaderFrag += '\n';
+shaderFrag += 'void main() {\n';
+shaderFrag += '  //pixel coords are inverted in framebuffer\n';
+shaderFrag += '  vec2 pixelPos = vec2(gl_FragCoord.x, resolution.y - gl_FragCoord.y);\n';
+shaderFrag += '  if (length(mouse - pixelPos) < 25.0) {\n';
+shaderFrag += '      gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0) * 0.7; //yellow circle, alpha=0.7\n';
+shaderFrag += '  } else {\n';
+shaderFrag += '     gl_FragColor = vec4( sin(time), mouse.x/resolution.x, mouse.y/resolution.y, 1) * 0.5; // blend with underlying image, alpha=0.5\n';
+shaderFrag += ' }\n';
+shaderFrag += '}\n';
 
 var container = new PIXI.Container();
 container.filterArea = app.screen;

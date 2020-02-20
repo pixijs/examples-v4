@@ -44,8 +44,8 @@ container.addChildAt(lightX, 1);
 // Listen for animate update
 app.ticker.add(function(delta) {
     // now we can get local coords for points of perspective
-    let posX = container.toLocal(squareX.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
-    let posY = container.toLocal(squareY.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
+    var posX = container.toLocal(squareX.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
+    var posY = container.toLocal(squareY.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
     container.proj.setAxisX(posX, squareX.factor);
     container.proj.setAxisY(posY, squareY.factor);
 });

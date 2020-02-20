@@ -39,7 +39,7 @@ squarePlane.addChild(bunny);
 
 // Listen for animate update
 app.ticker.add(function(delta) {
-    let pos = container.toLocal(squareFar.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
+    var pos = container.toLocal(squareFar.position, undefined, undefined, undefined, PIXI.projection.TRANSFORM_STEP.BEFORE_PROJ);
     // need to invert this thing, otherwise we'll have to use scale.y=-1 which is not good
     pos.y = -pos.y;
     pos.x = -pos.x;

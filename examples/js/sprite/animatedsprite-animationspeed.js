@@ -16,7 +16,7 @@ function onAssetsLoaded(loader, resources) {
         var framekey = '0123456789 ' + i + '.ase';
         var texture = PIXI.Texture.fromFrame(framekey);
         var time = resources.spritesheet.data.frames[framekey].duration;
-        textures.push({ texture, time });
+        textures.push({ texture: texture, time: time });
     }
 
     var scaling = 4;

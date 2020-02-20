@@ -5,7 +5,7 @@ var WIDTH = W / resolution; var
 
 // the plugin is here: https://github.com/pixijs/pixi-display/tree/layers, its WIP
 
-var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution });
+var app = new PIXI.Application({ width: WIDTH, height: HEIGHT, resolution: resolution });
 document.body.appendChild(app.view);
 
 // create the stage instead of container
